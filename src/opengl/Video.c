@@ -1,21 +1,22 @@
-#include "interactive.h"
-#include <lang/types.h>
+#include "Radiant.h"
+#include "Internal.h"
+#include "InternalOpengl.h"
+
+#include <stdint.h>
 #include <GLFW/glfw3.h>
-#include <OpenGL/OpenGL.h>
 #include <stdlib.h>
 #include <stdio.h>
 
-static GLFWwindow *win;
+static uint videoResolution[2];
 
 static void sendVideoResolutionChangeEvent(int width, int height) {
-  iEventQueue.events[iEventQueue.numEvents].type = I_EVENT_VIDEO_RESOLUTION_CHANGE;
+  iEventQueue.events[iEventQueue.numEvents].type = EVENT_VIDEO_RESOLUTION_CHANGE;
   iEventQueue.numEvents++;
 }
 
-void i_video_initialize(uint16 width, uint16 height, bool fullscreen) {
+void Video_Initialize(uint16_t width, uint16_t height, bool fullscreen) {
   /*    glfwSetErrorCallback(onError);*/
   if ( !glfwInit() ) {
-    /*        Services::getLogger()->fatal("glfwInit error: failed to initialize glfw library\n"); */
     printf("Error - couldn't initialize GLFW. Exiting...");
     exit(-1);
   }
@@ -33,9 +34,12 @@ void i_video_initialize(uint16 width, uint16 height, bool fullscreen) {
 
   glfwMakeContextCurrent(win);
   glViewport(0, 0, width, height);
+
+  videoResolution[0] = width;
+  videoResolution[1] = height;
 }
 
-void i_video_changeMode(uint16 width, uint16 height, bool fullscreen) {
+void Video_ChangeMode(uint16_t width, uint16_t height, bool fullscreen) {
 
   if (fullscreen) {
     GLFWmonitor *monitor = glfwGetPrimaryMonitor();
@@ -46,20 +50,28 @@ void i_video_changeMode(uint16 width, uint16 height, bool fullscreen) {
     glfwSetWindowMonitor(win, NULL, 0, 0, width, height, UNUSED);
   }
 
-  iEventQueue.events[iEventQueue.numEvents].type = I_EVENT_VIDEO_RESOLUTION_CHANGE;
+  videoResolution[0] = width;
+  videoResolution[1] = height;
+
+  iEventQueue.events[iEventQueue.numEvents].type = EVENT_VIDEO_RESOLUTION_CHANGE;
   iEventQueue.numEvents++;
 }
 
-void i_video_deinitialize() {
+void Video_GetResolution(uint *resolution) {
+  resolution[0] = videoResolution[0];
+  resolution[1] = videoResolution[1];
+}
+
+void Video_Deinitialize() {
   glfwDestroyWindow(win);
   glfwTerminate();
 }
 
-void i_video_clearBuffer() {
+void Video_ClearBuffer() {
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
-void i_video_swapBuffer() {
+void Video_SwapBuffer() {
   glfwSwapBuffers(win);
 }
 
@@ -68,17 +80,17 @@ void i_video_swapBuffer() {
    /*const IAttributeArray *colorArray = geometry->colorArray;*/
    /*const IAttributeArray *normalArray = geometry->normalArray;*/
    /*const IAttributeArray *textureCoordinateArray = geometry->textureCoordinateArray;*/
-   /*const IIndexArray *indexArray = geometry->indexArray;*/
+   /*const IndexArray *indexArray = geometry->indexArray;*/
 
    /*glBindBuffer(GL_ARRAY_BUFFER, vertexArray->id);*/
    /*TODO: Maybe constant locations could be enforced and used to simplify and speed this up */
-   /*glVertexAttribPointer(iBoundGpuProgram.vertexAttributeLocation, I_ATTRIBUTE_VERTEX_SIZE, GL_FLOAT, GL_FALSE, 0, NULL);*/
+   /*glVertexAttribPointer(iBoundGpuProgram.vertexAttributeLocation, ATTRIBUTE_VERTEX_SIZE, GL_FLOAT, GL_FALSE, 0, NULL);*/
 
    /*glBindBuffer(GL_ARRAY_BUFFER, colorArray->id);*/
    /*glVertexAttribPointer(iBoundGpuProgram.colorAttributeLocation, I_ATTRIBUTE_COLOR_SIZE, GL_FLOAT, GL_FALSE,  0, NULL);*/
 
    /*glBindBuffer(GL_ARRAY_BUFFER, normalArray->id);*/
-   /*glVertexAttribPointer(iBoundGpuProgram.normalAttributeLocation, I_ATTRIBUTE_NORMAL_SIZE, GL_FLOAT, GL_FALSE, 0, NULL);*/
+   /*glVertexAttribPointer(iBoundGpuProgram.normalAttributeLocation, ATTRIBUTE_NORMAL_SIZE, GL_FLOAT, GL_FALSE, 0, NULL);*/
 
    /*glBindBuffer(GL_ARRAY_BUFFER, textureCoordinateArray->id);*/
    /*glVertexAttribPointer(iBoundGpuProgram.textureCoordinateAttributeLocation, I_ATTRIBUTE_TEXTURE_COORDINATE_SIZE, GL_FLOAT, GL_FALSE, 0, NULL);*/
@@ -87,8 +99,8 @@ void i_video_swapBuffer() {
  /*}*/
 
 /* attribute arrays */
-IAttributeArray *i_attribute_array_create(const float *data, const uint32 size) {
-  IAttributeArray *arr = malloc(sizeof *arr);
+AttributeArray *AttributeArray_Create(const float *data, const uint32_t size) {
+  AttributeArray *arr = malloc(sizeof *arr);
   
   glGenBuffers(1, &arr->id);
   glBindBuffer(GL_ARRAY_BUFFER, arr->id);
@@ -98,30 +110,30 @@ IAttributeArray *i_attribute_array_create(const float *data, const uint32 size) 
   return arr;
 }
 
-void i_attribute_array_destroy(IAttributeArray *input) {
+void AttributeArray_Destroy(AttributeArray *input) {
   glDeleteBuffers(1, &input->id);
   free(input);
 }
 
-void i_attribute_array_bind(IAttributeArray *attributeArray) {
+void AttributeArray_Bind(AttributeArray *attributeArray) {
   glBindBuffer(GL_ARRAY_BUFFER, attributeArray->id);
 }
 
-void i_attribute_array_enableAttributes(const uint *attributeLocations, const uint numAttributes) {
+void AttributeArray_EnableAttributes(const uint *attributeLocations, const uint numAttributes) {
   uint i;
   for (i = 0; i < numAttributes; i++) {
     glEnableVertexAttribArray(attributeLocations[i]);
   }
 }
 
-void i_attribute_array_describeAttribute(const uint gpuLocation, const uint width, const uint stride, const uint offset) {
+void AttributeArray_DescribeAttribute(const uint gpuLocation, const uint width, const uint stride, const uint offset) {
   glVertexAttribPointer( gpuLocation, width, GL_FLOAT, GL_FALSE, stride * sizeof(GLfloat), (const GLvoid *)(offset * sizeof(GLfloat)) );
   glEnableVertexAttribArray(gpuLocation);
 
 }
 
-IIndexArray *i_index_array_create(const uint *data, const uint32 size) {
-  IIndexArray *arr = malloc(sizeof *arr);
+IndexArray *IndexArray_Create(const uint *data, const uint32_t size) {
+  IndexArray *arr = malloc(sizeof *arr);
   arr->size = size;
   glGenBuffers(1, &arr->id);
   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, arr->id);
@@ -130,19 +142,19 @@ IIndexArray *i_index_array_create(const uint *data, const uint32 size) {
   return arr;
 }
 
-void i_index_array_destroy(IIndexArray *indexArray) {
+void IndexArray_Destroy(IndexArray *indexArray) {
   glDeleteBuffers(1, &indexArray->id);
   free(indexArray);
 }
-void i_index_array_bind(IIndexArray *indexArray) {
+void IndexArray_Bind(IndexArray *indexArray) {
   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexArray->id);
 }
-void i_index_array_render(IIndexArray *indexArray) {
+void IndexArray_Render(IndexArray *indexArray) {
   glDrawElements(GL_TRIANGLES, indexArray->size, GL_UNSIGNED_INT, (void*)0);
 }
 
-ITexture *i_texture_createRgb(const uint8 *rgb, const uint16 width, const uint16 height) {
-  ITexture *tex = malloc(sizeof *tex);
+Texture *Texture_CreateRgb(const uint8_t *rgb, const uint16_t width, const uint16_t height) {
+  Texture *tex = malloc(sizeof *tex);
 
   glGenTextures(1, &tex->id);
   glBindTexture(GL_TEXTURE_2D, tex->id);
@@ -151,11 +163,14 @@ ITexture *i_texture_createRgb(const uint8 *rgb, const uint16 width, const uint16
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
   glBindTexture(GL_TEXTURE_2D, 0);
 
+  tex->width = width;
+  tex->height = height;
+
   return tex;
 }
 
-ITexture *i_texture_createRgba(const uint8 *rgba, const uint16 width, const uint16 height) {
-  ITexture *tex = malloc(sizeof *tex);
+Texture *Texture_CreateRgba(const uint8_t *rgba, const uint16_t width, const uint16_t height) {
+  Texture *tex = malloc(sizeof *tex);
 
   glGenTextures(1, &tex->id);
   glBindTexture(GL_TEXTURE_2D, tex->id);
@@ -164,14 +179,22 @@ ITexture *i_texture_createRgba(const uint8 *rgba, const uint16 width, const uint
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
   glBindTexture(GL_TEXTURE_2D, 0);
 
+  tex->width = width;
+  tex->height = height;
+
   return tex;
 }
 
-void i_texture_delete(ITexture *texture) {
+void Texture_Delete(Texture *texture) {
   glDeleteTextures(1, &texture->id);
   free(texture);
 }
 
-void i_texture_bind(ITexture *texture) {
+void Texture_Bind(Texture *texture) {
   glBindTexture(GL_TEXTURE_2D, texture->id);
+}
+
+void Texture_GetSize(Texture *texture, uint16_t *output) {
+  output[0] = texture->width;
+  output[1] = texture->height;
 }

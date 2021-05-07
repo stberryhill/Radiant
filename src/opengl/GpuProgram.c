@@ -1,5 +1,8 @@
-#include "interactive.h"
-#include <lang/types.h>
+#include "Radiant.h"
+#include "Internal.h"
+
+#include <stdint.h>
+#include <stdbool.h>
 #include <GLFW/glfw3.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -52,8 +55,8 @@ static void destroyShader(const uint shaderId) {
 }
 
 
-IGpuProgram *i_gpu_program_create(const char *vertexShaderSource, const char *fragmentShaderSource, const IGpuAttributeBinding *attributeBindings, const uint numBindings) {
-  IGpuProgram *gpuProgram = malloc(sizeof *gpuProgram);
+GpuProgram *GpuProgram_Create(const char *vertexShaderSource, const char *fragmentShaderSource, const GpuAttributeBinding *attributeBindings, const uint numBindings) {
+  GpuProgram *gpuProgram = malloc(sizeof *gpuProgram);
   gpuProgram->programId = glCreateProgram();
   if (!gpuProgram->programId) {
     printf("Error - couldn't create opengl gpu program.");
@@ -87,7 +90,7 @@ IGpuProgram *i_gpu_program_create(const char *vertexShaderSource, const char *fr
   return gpuProgram;
 }
 
-void i_gpu_program_destroy(IGpuProgram *gpuProgram) {
+void GpuProgram_Destroy(GpuProgram *gpuProgram) {
   glDetachShader(gpuProgram->programId, gpuProgram->vertexShaderId);
   glDetachShader(gpuProgram->programId, gpuProgram->fragmentShaderId);
   destroyShader(gpuProgram->vertexShaderId);
@@ -97,27 +100,35 @@ void i_gpu_program_destroy(IGpuProgram *gpuProgram) {
   free(gpuProgram);
 }
 
-void i_gpu_program_bind(IGpuProgram *gpuProgram) {
+void GpuProgram_Bind(GpuProgram *gpuProgram) {
   glUseProgram(gpuProgram->programId);
   iBoundGpuProgram = *gpuProgram;
 }
 
-void i_gpu_program_setMatrix4f(const uint matrixLocation, float *inputMatrix) {
+void GpuProgram_SetMatrix4f(const uint matrixLocation, float *inputMatrix) {
   glUniformMatrix4fv(matrixLocation, 1, GL_TRUE, inputMatrix);
 }
 
-void i_gpu_program_setVector2f(const uint vectorLocation, float *inputVector) {
+void GpuProgram_SetVector2f(const uint vectorLocation, float *inputVector) {
   glUniform2fv(vectorLocation, 1, inputVector);
 }
 
-void i_gpu_program_setVector3f(const uint vectorLocation, float *inputVector) {
+void GpuProgram_SetVector3f(const uint vectorLocation, float *inputVector) {
   glUniform3fv(vectorLocation, 1, inputVector);
 }
 
-void i_gpu_program_setVector4f(const uint vectorLocation, float *inputVector) {
+void GpuProgram_SetVector4f(const uint vectorLocation, float *inputVector) {
   glUniform4fv(vectorLocation, 1, inputVector);
 }
 
-uint i_gpu_program_getParameterLocation(IGpuProgram *program, const char *name) {
+void GpuProgram_SetVector2i(const uint intLocation, int *inputVector) {
+  glUniform2iv(intLocation, 1, inputVector);
+}
+
+void GpuProgram_SetInt(const uint intLocation, int inputInt) {
+  glUniform1i(intLocation, inputInt);
+}
+
+uint GpuProgram_GetParameterLocation(GpuProgram *program, const char *name) {
   return glGetUniformLocation(program->programId, name);
 }
