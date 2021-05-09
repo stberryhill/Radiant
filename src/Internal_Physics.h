@@ -44,7 +44,7 @@ BBox2DList *BBoxList_create();
 void BBoxList_destroy(BBox2DList *list);
 BBox2DListNode *BBoxList_getHead(BBox2DList *list);
 int BBoxList_getSize(BBox2DList *list);
-BBox2D *BBoxList_addBBox(BBox2DList *list, const BBox2D box); //add bbox and return pointer to it.
+BBox2D *BBoxList_addBBox(BBox2DList *list, const BBox2D box); /* add bbox and return pointer to it. */
 void BBoxList_removeNode(BBox2DList *list, BBox2DListNode *node);
 void BBoxList_removeNodeByIndex(BBox2DList *list, int indexOfNode);
 

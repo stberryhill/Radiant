@@ -54,11 +54,11 @@ void Input_Initialize() {
 }
 
 static void glfwKeyCallbackWrapper(GLFWwindow* window, int key, int scancode, int action, int mods) {
-    if (iEventQueue.numEvents < INPUT_MAX_EVENTS && action != GLFW_REPEAT) {
-        iEventQueue.events[iEventQueue.numEvents].type = INPUT_EVENT_KEY;
-        iEventQueue.events[iEventQueue.numEvents].code = key;
-        iEventQueue.events[iEventQueue.numEvents].buttonState = action;
-        iEventQueue.numEvents++;
+    if (rEventQueue.numEvents < RADIANT_MAX_EVENTS && action != GLFW_REPEAT) {
+        rEventQueue.events[rEventQueue.numEvents].type = EVENT_TYPE_KEY;
+        rEventQueue.events[rEventQueue.numEvents].code = key;
+        rEventQueue.events[rEventQueue.numEvents].buttonState = action;
+        rEventQueue.numEvents++;
     } else {
         printf("Error - too many events for queue. Dropping key event...");
     }

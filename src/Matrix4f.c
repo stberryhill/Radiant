@@ -2,7 +2,7 @@
 #include <math.h>
 #include <stdio.h>
 
-static const short MAT4_MAX_STRING_LENGTH = 256;
+#define MAT4_MAX_STRING_LENGTH 256
 
 /* Matrix creation */
 void Matrix4f_Identity(float *output) {

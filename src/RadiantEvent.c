@@ -9,12 +9,12 @@ static uint8_t queuePosition = 0;
 RadiantEvent *Input_ReadNextEventInQueueUntilEmpty() {
   RadiantEvent *event = 0;
 
-  if (queuePosition < iEventQueue.numEvents) {
-    event = &iEventQueue.events[queuePosition];
+  if (queuePosition < rEventQueue.numEvents) {
+    event = &rEventQueue.events[queuePosition];
     queuePosition++;
   } else {
     queuePosition = 0;
-    iEventQueue.numEvents = 0;
+    rEventQueue.numEvents = 0;
   }
 
   return event;

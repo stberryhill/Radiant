@@ -10,8 +10,8 @@
 static uint videoResolution[2];
 
 static void sendVideoResolutionChangeEvent(int width, int height) {
-  iEventQueue.events[iEventQueue.numEvents].type = EVENT_VIDEO_RESOLUTION_CHANGE;
-  iEventQueue.numEvents++;
+  rEventQueue.events[rEventQueue.numEvents].type = EVENT_TYPE_VIDEO_RESOLUTION_CHANGE;
+  rEventQueue.numEvents++;
 }
 
 void Video_Initialize(uint16_t width, uint16_t height, bool fullscreen) {
@@ -53,8 +53,8 @@ void Video_ChangeMode(uint16_t width, uint16_t height, bool fullscreen) {
   videoResolution[0] = width;
   videoResolution[1] = height;
 
-  iEventQueue.events[iEventQueue.numEvents].type = EVENT_VIDEO_RESOLUTION_CHANGE;
-  iEventQueue.numEvents++;
+  rEventQueue.events[rEventQueue.numEvents].type = EVENT_TYPE_VIDEO_RESOLUTION_CHANGE;
+  rEventQueue.numEvents++;
 }
 
 void Video_GetResolution(uint *resolution) {
@@ -84,16 +84,16 @@ void Video_SwapBuffer() {
 
    /*glBindBuffer(GL_ARRAY_BUFFER, vertexArray->id);*/
    /*TODO: Maybe constant locations could be enforced and used to simplify and speed this up */
-   /*glVertexAttribPointer(iBoundGpuProgram.vertexAttributeLocation, ATTRIBUTE_VERTEX_SIZE, GL_FLOAT, GL_FALSE, 0, NULL);*/
+   /*glVertexAttribPointer(rBoundGpuProgram.vertexAttributeLocation, ATTRIBUTE_VERTEX_SIZE, GL_FLOAT, GL_FALSE, 0, NULL);*/
 
    /*glBindBuffer(GL_ARRAY_BUFFER, colorArray->id);*/
-   /*glVertexAttribPointer(iBoundGpuProgram.colorAttributeLocation, I_ATTRIBUTE_COLOR_SIZE, GL_FLOAT, GL_FALSE,  0, NULL);*/
+   /*glVertexAttribPointer(rBoundGpuProgram.colorAttributeLocation, I_ATTRIBUTE_COLOR_SIZE, GL_FLOAT, GL_FALSE,  0, NULL);*/
 
    /*glBindBuffer(GL_ARRAY_BUFFER, normalArray->id);*/
-   /*glVertexAttribPointer(iBoundGpuProgram.normalAttributeLocation, ATTRIBUTE_NORMAL_SIZE, GL_FLOAT, GL_FALSE, 0, NULL);*/
+   /*glVertexAttribPointer(rBoundGpuProgram.normalAttributeLocation, ATTRIBUTE_NORMAL_SIZE, GL_FLOAT, GL_FALSE, 0, NULL);*/
 
    /*glBindBuffer(GL_ARRAY_BUFFER, textureCoordinateArray->id);*/
-   /*glVertexAttribPointer(iBoundGpuProgram.textureCoordinateAttributeLocation, I_ATTRIBUTE_TEXTURE_COORDINATE_SIZE, GL_FLOAT, GL_FALSE, 0, NULL);*/
+   /*glVertexAttribPointer(rBoundGpuProgram.textureCoordinateAttributeLocation, I_ATTRIBUTE_TEXTURE_COORDINATE_SIZE, GL_FLOAT, GL_FALSE, 0, NULL);*/
 
   /*glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexArray->id);*/
  /*}*/

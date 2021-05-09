@@ -15,16 +15,16 @@ typedef unsigned int uint;
 #define BUTTON_STATE_MASK_VALUE 0x7F      /* 0b01111111 */
 #define BUTTON_STATE_MASK_TRANSITION 0x80 /* 0b10000000 */
 #define BUTTON_STATE_BIT_TRANSITION 7     /* The transition bit is bit 7 */
-#define MAX_EVENTS 64
+#define RADIANT_MAX_EVENTS 64
 
 /* Each button is associated with a single function which takes the button's state as input */
 typedef void (*ButtonFunctionPointer)(uint8_t);
 
 typedef enum {
-  EVENT_KEY,
-  EVENT_MOUSE,
-  EVENT_VIDEO_RESOLUTION_CHANGE,
-  EVENT_COUNT
+  EVENT_TYPE_KEY,
+  EVENT_TYPE_MOUSE,
+  EVENT_TYPE_VIDEO_RESOLUTION_CHANGE,
+  EVENT_TYPE_COUNT
 } EventType;
 
 /* input-related */

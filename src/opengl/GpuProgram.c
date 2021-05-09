@@ -102,7 +102,7 @@ void GpuProgram_Destroy(GpuProgram *gpuProgram) {
 
 void GpuProgram_Bind(GpuProgram *gpuProgram) {
   glUseProgram(gpuProgram->programId);
-  iBoundGpuProgram = *gpuProgram;
+  rBoundGpuProgram = *gpuProgram;
 }
 
 void GpuProgram_SetMatrix4f(const uint matrixLocation, float *inputMatrix) {

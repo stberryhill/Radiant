@@ -8,23 +8,23 @@
 
 static PhysicsState2D *physicsState;
 
-void Physics_initialize() {
+void Physics_Initialize() {
     physicsState = malloc(sizeof *physicsState);
     physicsState->t = 0;
     physicsState->dt = 0;
     physicsState->boxes = BBoxList_create();
 }
 
-void Physics_quit() {
+void Physics_Quit() {
     BBoxList_destroy(physicsState->boxes);
     free(physicsState);
 }
 
-void Physics_setGravity(double acceleration) {
+void Physics_SetGravity(double acceleration) {
     physicsState->gravityAcceleration = acceleration;
 }
 
-void Physics_update(double t, double dt) {
+void Physics_Update(double t, double dt) {
     float newCenter[2];
     float newVelocity[2];
     float temp[2];
@@ -121,7 +121,7 @@ void Physics_update(double t, double dt) {
     }
 }
 
-BBox2D *Physics_addBBox(BBoxTypes boxType, PhysicsMaterial *material, float *center, float *size, float theta) {
+BBox2D *Physics_AddBBox2D(BBoxTypes boxType, PhysicsMaterial *material, float *center, float *size, float theta) {
     BBox2D box;
     box.type = boxType;
     box.id = BBoxList_getSize(physicsState->boxes);
@@ -141,4 +141,4 @@ BBox2D *Physics_addBBox(BBoxTypes boxType, PhysicsMaterial *material, float *cen
     return BBoxList_addBBox(physicsState->boxes, box);
 }
 
-void Physics_removeBBox(BBox2D *box);
+void Physics_RemoveBBox2D(BBox2D *box);
