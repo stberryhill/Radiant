@@ -22,6 +22,30 @@ set(openglImplementation
   src/opengl/Video.c
   )
 
+
+  set(linuxSources
+  src/linux/Clock.c
+  )
+
+set(windowsSources )
+
+set(macSources
+  src/mac/Clock.c
+  )
+
+set(platformDependentSources )
+if (LINUX)
+  list(APPEND platformDependentSources ${linuxSources})
+endif(LINUX)
+
+if (WIN32)
+  list(APPEND platformDependentSources ${windowsSources})
+endif(WIN32)
+
+if (APPLE)
+  list(APPEND platformDependentSources ${macSources})
+endif(APPLE)
+
 add_library(${PROJECT_NAME} SHARED
   src/BBox.c
   src/Button.c
@@ -41,6 +65,7 @@ add_library(${PROJECT_NAME} SHARED
   src/Vector3f.c
   src/Vector4f.c
   ${openglImplementation}
+  ${platformDependentSources}
   )
 
 # Allows to use in a subdirectory (and in examples)
