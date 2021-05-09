@@ -65,6 +65,8 @@ add_library(${PROJECT_NAME} SHARED
   src/Vector3f.c
   src/Vector4f.c
   src/String.c
+  src/Clock.c
+  src/Internal_Time.h
   ${openglImplementation}
   ${platformDependentSources}
   )
