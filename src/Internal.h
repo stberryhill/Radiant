@@ -42,7 +42,7 @@ struct Texture {
   uint16_t height;
 };
 
-extern RadiantEventQueue iEventQueue;
-extern GpuProgram iBoundGpuProgram;
+extern RadiantEventQueue rEventQueue;
+extern GpuProgram rBoundGpuProgram;
 
 #endif
