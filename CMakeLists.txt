@@ -46,6 +46,15 @@ add_library(${PROJECT_NAME} SHARED
 # Allows to use in a subdirectory (and in examples)
 add_library(Radiant::Radiant ALIAS Radiant)
 
+
+find_package(glfw3 REQUIRED)
+find_package(OpenGL REQUIRED)
+
+target_link_libraries(Radiant
+  OpenGL
+  glfw
+)
+
 generate_export_header(Radiant
   EXPORT_MACRO_NAME RADIANT_API
   EXPORT_FILE_NAME ${CMAKE_BINARY_DIR}/include/RadiantAPIMacro.h
