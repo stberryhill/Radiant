@@ -7,6 +7,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+static GpuProgram rBoundGpuProgram;
+
 static uint sizeOfShaderSource(const char *shaderSource) {
   int count = 0;
 

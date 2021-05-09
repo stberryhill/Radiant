@@ -4,6 +4,8 @@
 #include "RadiantAPIMacro.h"
 #include "RadiantMath.h"
 #include "RadiantPhysics.h"
+#include "RadiantTime.h"
+#include "RadiantString.h"
 #include <stdint.h>
 #include <stdbool.h>
 

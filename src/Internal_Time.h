@@ -1,6 +1,10 @@
 #ifndef _INTERNAL_TIME_H
 #define _INTERNAL_TIME_H
 
+#include "RadiantTime.h"
+
+#include <stdbool.h>
+
 struct Timer {
   double timeout;
   double timeLeft;

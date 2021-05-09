@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include <string.h>
+#include <stdbool.h>
 
 bool String_Equal(const char *a, const char *b) {
   return (strcmp(a, b) == 0);

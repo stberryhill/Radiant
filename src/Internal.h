@@ -43,6 +43,5 @@ struct Texture {
 };
 
 extern RadiantEventQueue rEventQueue;
-extern GpuProgram rBoundGpuProgram;
 
 #endif

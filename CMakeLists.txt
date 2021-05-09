@@ -15,15 +15,19 @@ if (NOT APPLE)
   set(CMAKE_INSTALL_RPATH $ORIGIN)
 endif()
 
+if(UNIX AND NOT APPLE)
+  set(LINUX TRUE)
+endif()
+
 set(openglImplementation
   src/opengl/GpuProgram.c
   src/opengl/Input.c
-  src/opengl/InternalOpengl.h
+  src/opengl/Internal_Opengl.h
   src/opengl/Video.c
   )
 
 
-  set(linuxSources
+set(linuxSources
   src/linux/Clock.c
   )
 

@@ -1,6 +1,6 @@
 #include "Radiant.h"
 #include "Internal.h"
-#include "InternalOpengl.h"
+#include "Internal_Opengl.h"
 
 #include <stdint.h>
 #include <GLFW/glfw3.h>

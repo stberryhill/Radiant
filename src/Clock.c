@@ -1,3 +1,4 @@
+#include "RadiantTime.h"
 #include "Internal_Time.h"
 
 #include <stdlib.h>
@@ -15,14 +16,14 @@ void Clock_Start() {
   }
 
   tTickCount = 0;
-  timeOfLastTick = Clock_TimeMilliseconds();
+  timeOfLastTick = System_TimeMillis();
 }
 
 void Clock_Tick() {
   /* TODO make deltaT be 1 when fps = 60, > 1 when fps < 60, and < 1 when fps > 60? */
   tTickCount++;
   const double lastTick = timeOfLastTick;
-  timeOfLastTick = Clock_TimeMilliseconds();
+  timeOfLastTick = System_TimeMillis();
   deltaT = (timeOfLastTick - lastTick) / 1000.0;
 
 }
@@ -32,11 +33,11 @@ double Clock_DeltaT() {
 }
 
 double Clock_SecondsSinceLastTick() {
-  return (Clock_TimeMilliseconds() - timeOfLastTick) / 1000.0;
+  return (System_TimeMillis() - timeOfLastTick) / 1000.0;
 }
 
 double Clock_MillisecondsSinceLastTick() {
-  return Clock_TimeMilliseconds() - timeOfLastTick;
+  return System_TimeMillis() - timeOfLastTick;
 }
 
 unsigned long Clock_GetTickCount() {

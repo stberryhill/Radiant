@@ -42,10 +42,10 @@ void Physics_Update(double t, double dt) {
         BBox2D *a = nA->data;
         nA = nA->next;
 
-        m_Vector2f_Scale(a->acceleration, dt, temp);
-        m_Vector2f_Add(a->velocity, temp, a->velocity);
-        m_Vector2f_Scale(a->velocity, dt, temp);
-        m_Vector2f_Add(a->center, temp, a->center);
+        Vector2f_Scale(a->acceleration, dt, temp);
+        Vector2f_Add(a->velocity, temp, a->velocity);
+        Vector2f_Scale(a->velocity, dt, temp);
+        Vector2f_Add(a->center, temp, a->center);
 
         nB = BBoxList_getHead(physicsState->boxes);
 
@@ -53,9 +53,9 @@ void Physics_Update(double t, double dt) {
         for (j = 0; j < i; j++) {
             BBox2D *b = nB->data;
             nB = nB->next;
-            m_Vector2f_Subtract(b->center, a->center, distance);
-            m_Vector2f_AbsoluteValue(distance, absDistance);
-            m_Vector2f_Add(a->size, b->size, regionOfCollision);
+            Vector2f_Subtract(b->center, a->center, distance);
+            Vector2f_AbsoluteValue(distance, absDistance);
+            Vector2f_Add(a->size, b->size, regionOfCollision);
 
             if (absDistance[0] > regionOfCollision[0]) {
                 return;
@@ -68,8 +68,8 @@ void Physics_Update(double t, double dt) {
             /* Collision has happened, deal with it. */
 
             float vAB[2];
-            m_Vector2f_Subtract(b->velocity, a->velocity, vAB);
-/*             // m_Vector2f_Normalize(distance, collisionNormal); //distance from a to b normalized */
+            Vector2f_Subtract(b->velocity, a->velocity, vAB);
+/*             // Vector2f_Normalize(distance, collisionNormal); //distance from a to b normalized */
             
 
             if (absDistance[0] >= absDistance[1]) {
@@ -98,24 +98,24 @@ void Physics_Update(double t, double dt) {
 
             printf("\ncollision normal: %f, %f\n", collisionNormal[0], collisionNormal[1]);
 
-            m_Vector2f_Add(b->center, temp, b->center); /* Push collider min distance to ensure no overlap. */
+            Vector2f_Add(b->center, temp, b->center); /* Push collider min distance to ensure no overlap. */
 
-            /* m_Vector2f_Normalize(collisionNormal, collisionNormal); */
-            float velocityAlongNormal = m_Vector2f_DotProduct(vAB, collisionNormal);
+            /* Vector2f_Normalize(collisionNormal, collisionNormal); */
+            float velocityAlongNormal = Vector2f_DotProduct(vAB, collisionNormal);
 
             if ((velocityAlongNormal > 0 && distance[0] < 0) || (velocityAlongNormal < 0 && distance[0] > 0)) {
-                float epsilon = m_MinFloat(a->material->restitution, b->material->restitution); /* Use min restitution for best results */
+                float epsilon = MinFloat(a->material->restitution, b->material->restitution); /* Use min restitution for best results */
                 float impulseCoefficient = -(1 + epsilon) * velocityAlongNormal;
                 impulseCoefficient /= (1/a->mass) + (1/b->mass);
 
                 printf("impulse coefficient=%f\n", impulseCoefficient);
                 float impulse[2];
-                m_Vector2f_Scale(collisionNormal, impulseCoefficient, impulse);
-                m_Vector2f_Scale(impulse, 1 / a->mass, temp);
-                m_Vector2f_Subtract(a->velocity, temp, a->velocity);
+                Vector2f_Scale(collisionNormal, impulseCoefficient, impulse);
+                Vector2f_Scale(impulse, 1 / a->mass, temp);
+                Vector2f_Subtract(a->velocity, temp, a->velocity);
 
-                m_Vector2f_Scale(impulse, 1 / b->mass, temp);
-                m_Vector2f_Add(b->velocity, temp, b->velocity);
+                Vector2f_Scale(impulse, 1 / b->mass, temp);
+                Vector2f_Add(b->velocity, temp, b->velocity);
             }
         }
     }
