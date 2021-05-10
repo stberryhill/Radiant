@@ -1,3 +1,8 @@
+/*
+ * author: S. Tyler Berryhill
+ * email: sean.tyler.berryhill@gmail.com
+ */
+
 #ifndef _RADIANT_PHYSICS_H
 #define _RADIANT_PHYSICS_H
 

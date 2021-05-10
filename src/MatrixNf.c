@@ -1,3 +1,9 @@
+/*
+ * License: Zlib
+ * Copyright (c) Sean Tyler Berryhill (sean.tyler.berryhill@gmail.com)
+ */
+
+
 #include "RadiantMath.h"
 #include <stdio.h>
 

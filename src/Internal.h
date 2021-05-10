@@ -1,3 +1,8 @@
+/*
+ * author: S. Tyler Berryhill
+ * email: sean.tyler.berryhill@gmail.com
+ */
+
 #ifndef _INTERACTIVE_INTERNAL_H
 #define _INTERACTIVE_INTERNAL_H
 

@@ -1,3 +1,8 @@
+/*
+ * author: S. Tyler Berryhill
+ * email: sean.tyler.berryhill@gmail.com
+ */
+
 #ifndef _RADIANT_TIMERS_H
 #define _RADIANT_TIMERS_H
 

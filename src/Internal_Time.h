@@ -1,3 +1,8 @@
+/*
+ * author: S. Tyler Berryhill
+ * email: sean.tyler.berryhill@gmail.com
+ */
+
 #ifndef _INTERNAL_TIME_H
 #define _INTERNAL_TIME_H
 
