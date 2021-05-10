@@ -1,6 +1,6 @@
 /*
- * author: S. Tyler Berryhill
- * email: sean.tyler.berryhill@gmail.com
+ * License: Zlib
+ * Copyright (c) Sean Tyler Berryhill (sean.tyler.berryhill@gmail.com)
  */
 
 #ifndef _INTERACTIVE_INTERNAL_H
