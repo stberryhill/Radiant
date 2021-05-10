@@ -73,6 +73,8 @@ add_library(${PROJECT_NAME} SHARED
   src/Internal_Time.h
   src/Internal_Logger.h
   src/Logger.c
+  src/Internal_File.h
+  src/File.c
   ${openglImplementation}
   ${platformDependentSources}
   )
