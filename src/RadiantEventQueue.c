@@ -1,3 +1,7 @@
+/*
+ * License: Zlib
+ * Copyright (c) Sean Tyler Berryhill (sean.tyler.berryhill@gmail.com)
+ */
 
 #include "Radiant.h"
 #include "Internal.h"
