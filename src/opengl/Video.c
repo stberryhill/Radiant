@@ -12,11 +12,17 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+static GLFWwindow *win;
 static uint videoResolution[2];
 
+GLFWwindow *Video_GetWin() {
+  return win;
+}
+
 static void sendVideoResolutionChangeEvent(int width, int height) {
-  rEventQueue.events[rEventQueue.numEvents].type = EVENT_TYPE_VIDEO_RESOLUTION_CHANGE;
-  rEventQueue.numEvents++;
+  RadiantEvent event;
+  event.type = EVENT_TYPE_VIDEO_RESOLUTION_CHANGE;
+  EventQueue_AddEvent(&event);
 }
 
 void Video_Initialize(uint16_t width, uint16_t height, bool fullscreen) {
@@ -58,8 +64,7 @@ void Video_ChangeMode(uint16_t width, uint16_t height, bool fullscreen) {
   videoResolution[0] = width;
   videoResolution[1] = height;
 
-  rEventQueue.events[rEventQueue.numEvents].type = EVENT_TYPE_VIDEO_RESOLUTION_CHANGE;
-  rEventQueue.numEvents++;
+  sendVideoResolutionChangeEvent(width, height);
 }
 
 void Video_GetResolution(uint *resolution) {

@@ -19,7 +19,7 @@ void Radiant_Initialize(uint16_t windowWidth, uint16_t windowHeight, bool fullsc
   Video_Initialize(windowWidth, windowHeight, fullscreen);
   Input_Initialize();
   pd_SetupEventQueueCallbacks();
-  rEventQueue.numEvents = 0;
+  EventQueue_Initialize();
 }
 
 void Radiant_Quit() {

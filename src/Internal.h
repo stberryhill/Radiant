@@ -47,6 +47,8 @@ struct Texture {
   uint16_t height;
 };
 
-extern RadiantEventQueue rEventQueue;
+
+void EventQueue_AddEvent(const RadiantEvent *event);
+void EventQueue_Initialize();
 
 #endif

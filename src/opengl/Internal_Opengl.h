@@ -8,6 +8,6 @@
 
 #include <GLFW/glfw3.h>
 
-extern GLFWwindow *win;
+GLFWwindow *Video_GetWin();
 
 #endif

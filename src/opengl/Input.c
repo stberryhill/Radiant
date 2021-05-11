@@ -16,22 +16,21 @@ void Input_Initialize() {
 }
 
 static void glfwKeyCallbackWrapper(GLFWwindow* window, int key, int scancode, int action, int mods) {
-    if (rEventQueue.numEvents < RADIANT_MAX_EVENTS && action != GLFW_REPEAT) {
-        rEventQueue.events[rEventQueue.numEvents].type = EVENT_TYPE_KEY;
-        rEventQueue.events[rEventQueue.numEvents].code = key;
-        rEventQueue.events[rEventQueue.numEvents].buttonState = action;
-        rEventQueue.numEvents++;
-    } else {
-        printf("Error - too many events for queue. Dropping key event...");
+    if (action != GLFW_REPEAT) {
+        RadiantEvent event;
+        event.type = EVENT_TYPE_KEY;
+        event.code = key;
+        event.buttonState = action;
+        EventQueue_AddEvent(&event);
     }
 }
 
 void pd_SetupEventQueueCallbacks() {
-    glfwSetKeyCallback(win, glfwKeyCallbackWrapper);
+    glfwSetKeyCallback(Video_GetWin(), glfwKeyCallbackWrapper);
 }
 
 bool Input_IsKeyDown(int keyCode) {
-    return glfwGetKey(win, keyCode) != 0 ? true : false;
+    return glfwGetKey(Video_GetWin(), keyCode) != 0 ? true : false;
 }
 
 void Input_PollEvents() {

@@ -76,6 +76,7 @@ add_library(${PROJECT_NAME} SHARED
   src/Logger.c
   src/Internal_File.h
   src/File.c
+  src/RadiantEventQueue.c
   ${openglImplementation}
   ${platformDependentSources}
   )

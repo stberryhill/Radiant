@@ -9,22 +9,6 @@
 #include <stdbool.h>
 #include <stdio.h>
 
-static uint8_t queuePosition = 0;
-
-RadiantEvent *Input_ReadNextEventInQueueUntilEmpty() {
-  RadiantEvent *event = 0;
-
-  if (queuePosition < rEventQueue.numEvents) {
-    event = &rEventQueue.events[queuePosition];
-    queuePosition++;
-  } else {
-    queuePosition = 0;
-    rEventQueue.numEvents = 0;
-  }
-
-  return event;
-}
-
 /* TODO: implement */
 bool Event_MatchesButtonMapping(const RadiantEvent *event, const ButtonMapping *mapping) { return false; }
 
