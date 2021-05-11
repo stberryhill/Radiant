@@ -24,6 +24,7 @@ set(openglImplementation
   src/opengl/Input.c
   src/opengl/Internal_Opengl.h
   src/opengl/Video.c
+  src/opengl/Internal_KeyDefines.h
   )
 
 

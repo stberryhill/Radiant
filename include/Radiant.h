@@ -78,59 +78,54 @@ typedef enum PixelFormatType {
 typedef struct Texture Texture;
 
 /* Input actions */
-extern int INPUT_ACTION_PRESS;
-extern int INPUT_ACTION_RELEASE;
+#define INPUT_ACTION_PRESS
+#define INPUT_ACTION_RELEASE
 
 /* Key codes */
-extern int INPUT_KEY_UP;
-extern int INPUT_KEY_DOWN;
-extern int INPUT_KEY_LEFT;
-extern int INPUT_KEY_RIGHT;
-extern int INPUT_KEY_ESCAPE;
-extern int INPUT_KEY_ENTER;
-extern int INPUT_KEY_SPACE;
-extern int INPUT_KEY_TAB;
-extern int INPUT_KEY_A;
-extern int INPUT_KEY_B;
-extern int INPUT_KEY_C;
-extern int INPUT_KEY_D;
-extern int INPUT_KEY_E;
-extern int INPUT_KEY_F;
-extern int INPUT_KEY_G;
-extern int INPUT_KEY_H;
-extern int INPUT_KEY_I;
-extern int INPUT_KEY_J;
-extern int INPUT_KEY_K;
-extern int INPUT_KEY_L;
-extern int INPUT_KEY_M;
-extern int INPUT_KEY_N;
-extern int INPUT_KEY_O;
-extern int INPUT_KEY_P;
-extern int INPUT_KEY_Q;
-extern int INPUT_KEY_R;
-extern int INPUT_KEY_S;
-extern int INPUT_KEY_T;
-extern int INPUT_KEY_U;
-extern int INPUT_KEY_V;
-extern int INPUT_KEY_W;
-extern int INPUT_KEY_X;
-extern int INPUT_KEY_Y;
-extern int INPUT_KEY_Z;
-extern int INPUT_KEY_0;
-extern int INPUT_KEY_1;
-extern int INPUT_KEY_2;
-extern int INPUT_KEY_3;
-extern int INPUT_KEY_4;
-extern int INPUT_KEY_5;
-extern int INPUT_KEY_6;
-extern int INPUT_KEY_7;
-extern int INPUT_KEY_8;
-extern int INPUT_KEY_9;
-
-/* Mouse codes */
-extern char INPUT_MOUSE_BUTTON_LEFT;
-extern char INPUT_MOUSE_BUTTON_RIGHT;
-extern char INPUT_MOUSE_WHEEL;
+#define INPUT_KEY_UP
+#define INPUT_KEY_DOWN
+#define INPUT_KEY_LEFT
+#define INPUT_KEY_RIGHT
+#define INPUT_KEY_ESCAPE
+#define INPUT_KEY_ENTER
+#define INPUT_KEY_SPACE
+#define INPUT_KEY_TAB
+#define INPUT_KEY_A
+#define INPUT_KEY_B
+#define INPUT_KEY_C
+#define INPUT_KEY_D
+#define INPUT_KEY_E
+#define INPUT_KEY_F
+#define INPUT_KEY_G
+#define INPUT_KEY_H
+#define INPUT_KEY_I
+#define INPUT_KEY_J
+#define INPUT_KEY_K
+#define INPUT_KEY_L
+#define INPUT_KEY_M
+#define INPUT_KEY_N
+#define INPUT_KEY_O
+#define INPUT_KEY_P
+#define INPUT_KEY_Q
+#define INPUT_KEY_R
+#define INPUT_KEY_S
+#define INPUT_KEY_T
+#define INPUT_KEY_U
+#define INPUT_KEY_V
+#define INPUT_KEY_W
+#define INPUT_KEY_X
+#define INPUT_KEY_Y
+#define INPUT_KEY_Z
+#define INPUT_KEY_0
+#define INPUT_KEY_1
+#define INPUT_KEY_2
+#define INPUT_KEY_3
+#define INPUT_KEY_4
+#define INPUT_KEY_5
+#define INPUT_KEY_6
+#define INPUT_KEY_7
+#define INPUT_KEY_8
+#define INPUT_KEY_9
 
 extern const uint8_t BUTTON_QUIT;
 

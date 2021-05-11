@@ -1,0 +1,146 @@
+/*
+ * License: Zlib
+ * Copyright (c) Sean Tyler Berryhill (sean.tyler.berryhill@gmail.com)
+ */
+
+#ifndef _RADIANT_INTERNAL_KEY_DEFINES_H
+#define _RADIANT_INTERNAL_KEY_DEFINES_H
+
+#include "Radiant.h"
+
+#undef INPUT_ACTION_PRESS
+#define INPUT_ACTION_PRESS GLFW_PRESS
+
+#undef INPUT_ACTION_RELEASE
+#define INPUT_ACTION_RELEASE GLFW_RELEASE
+
+#undef INPUT_KEY_UP
+#define INPUT_KEY_UP GLFW_KEY_UP
+
+#undef INPUT_KEY_DOWN
+#define INPUT_KEY_DOWN GLFW_KEY_DOWN
+
+#undef INPUT_KEY_LEFT
+#define INPUT_KEY_LEFT GLFW_KEY_LEFT
+
+#undef INPUT_KEY_RIGHT
+#define INPUT_KEY_RIGHT GLFW_KEY_RIGHT
+
+#undef INPUT_KEY_ENTER
+#define INPUT_KEY_ENTER GLFW_KEY_ENTER
+
+#undef INPUT_KEY_SPACE
+#define INPUT_KEY_SPACE GLFW_KEY_SPACE
+
+#undef INPUT_KEY_TAB
+#define INPUT_KEY_TAB GLFW_KEY_TAB
+
+#undef INPUT_KEY_A
+#define INPUT_KEY_A GLFW_KEY_A
+
+#undef INPUT_KEY_B
+#define INPUT_KEY_B GLFW_KEY_B
+
+#undef INPUT_KEY_C
+#define INPUT_KEY_C GLFW_KEY_C
+
+#undef INPUT_KEY_D
+#define INPUT_KEY_D GLFW_KEY_D
+
+#undef INPUT_KEY_E
+#define INPUT_KEY_E GLFW_KEY_E
+
+#undef INPUT_KEY_F
+#define INPUT_KEY_F GLFW_KEY_F
+
+#undef INPUT_KEY_G
+#define INPUT_KEY_G GLFW_KEY_G
+
+#undef INPUT_KEY_H
+#define INPUT_KEY_H GLFW_KEY_H
+
+#undef INPUT_KEY_I
+#define INPUT_KEY_I GLFW_KEY_I
+
+#undef INPUT_KEY_J
+#define INPUT_KEY_J GLFW_KEY_J
+
+#undef INPUT_KEY_K
+#define INPUT_KEY_K GLFW_KEY_K
+
+#undef INPUT_KEY_L
+#define INPUT_KEY_L GLFW_KEY_L
+
+#undef INPUT_KEY_M
+#define INPUT_KEY_M GLFW_KEY_M
+
+#undef INPUT_KEY_N
+#define INPUT_KEY_N GLFW_KEY_N
+
+#undef INPUT_KEY_O
+#define INPUT_KEY_O GLFW_KEY_O
+
+#undef INPUT_KEY_P
+#define INPUT_KEY_P GLFW_KEY_P
+
+#undef INPUT_KEY_Q
+#define INPUT_KEY_Q GLFW_KEY_Q
+
+#undef INPUT_KEY_R
+#define INPUT_KEY_R GLFW_KEY_R
+
+#undef INPUT_KEY_S
+#define INPUT_KEY_S GLFW_KEY_S
+
+#undef INPUT_KEY_T
+#define INPUT_KEY_T GLFW_KEY_T
+
+#undef INPUT_KEY_U
+#define INPUT_KEY_U GLFW_KEY_U
+
+#undef INPUT_KEY_V
+#define INPUT_KEY_V GLFW_KEY_V
+
+#undef INPUT_KEY_W
+#define INPUT_KEY_W GLFW_KEY_W
+
+#undef INPUT_KEY_X
+#define INPUT_KEY_X GLFW_KEY_X
+
+#undef INPUT_KEY_Y
+#define INPUT_KEY_Y GLFW_KEY_Y
+
+#undef INPUT_KEY_Z
+#define INPUT_KEY_Z GLFW_KEY_Z
+
+#undef INPUT_KEY_0
+#define INPUT_KEY_0 GLFW_KEY_0
+
+#undef INPUT_KEY_1
+#define INPUT_KEY_1 GLFW_KEY_1
+
+#undef INPUT_KEY_2
+#define INPUT_KEY_2 GLFW_KEY_2
+
+#undef INPUT_KEY_3
+#define INPUT_KEY_3 GLFW_KEY_3
+
+#undef INPUT_KEY_4
+#define INPUT_KEY_4 GLFW_KEY_4
+
+#undef INPUT_KEY_5
+#define INPUT_KEY_5 GLFW_KEY_5
+
+#undef INPUT_KEY_6
+#define INPUT_KEY_6 GLFW_KEY_6
+
+#undef INPUT_KEY_7
+#define INPUT_KEY_7 GLFW_KEY_7
+
+#undef INPUT_KEY_8
+#define INPUT_KEY_8 GLFW_KEY_8
+
+#undef INPUT_KEY_9
+#define INPUT_KEY_9 GLFW_KEY_9
+
+#endif
