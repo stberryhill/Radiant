@@ -11,6 +11,7 @@
 #include <unistd.h>
 #include <time.h>
 #include <errno.h>
+#include <stdio.h>
 
 static struct timespec ts;
 
@@ -39,14 +40,15 @@ double System_TimeNanos() {
 
 double System_TimeMillis() {
   clock_gettime(CLOCK_REALTIME, &ts);
-  const double millis = ts.tv_nsec / 1000000; /* Convert nanos to millis */
+  const double accumulativeMillis = (double) ts.tv_sec / 1000.0;
+  const double millis = accumulativeMillis + (double) ts.tv_nsec / 1000000.0; /* Convert nanos to millis */
 
   return millis;
 }
 
 double System_TimeSeconds() {
   clock_gettime(CLOCK_REALTIME, &ts);
-  const double seconds = ts.tv_nsec / 1000000000; /* Convert nanos to millis */
+  const double seconds = (double) ts.tv_sec + ((double) ts.tv_nsec / 1000000000.0); /* Convert nanos to millis */
 
   return seconds;
 }

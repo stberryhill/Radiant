@@ -53,6 +53,6 @@ float Vector2f_AngleBetweenVectors(const float a[], const float b[]) {
 }
 
 void Vector2f_AbsoluteValue(const float input[], float *output) {
-  output[0] = fabsf(input[0]);
-  output[1] = fabsf(input[1]);
+  output[0] = fabs(input[0]);
+  output[1] = fabs(input[1]);
 }

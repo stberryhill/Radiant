@@ -8,14 +8,21 @@
 
 #include "RadiantAPIMacro.h"
 
-typedef enum BBoxTypes {
+typedef enum {
     BBOX_TYPE_AXIS_ALIGNED,
-    BBOX_TYPE_NON_AXIS_ALIGNED
+    BBOX_TYPE_NON_AXIS_ALIGNED,
+    BBOX_TYPE_COUNT
 }BBoxTypes;
+
+typedef enum {
+    COLLISION_SHAPE_2D_TYPE_RECTANGLE,
+    COLLISION_SHAPE_2D_TYPE_COUNT
+} CollisionShapeType2d;
 
 typedef struct PhysicsState2D PhysicsState2D;
 typedef struct PhysicsMaterial PhysicsMaterial;
 typedef struct PhysicsObject PhysicsObject;
+typedef struct CollisionShape2D CollisionShape2D;
 typedef struct BBox2D BBox2D;
 typedef struct BBox3D BBox3D;
 typedef struct Force Force;
@@ -74,6 +81,10 @@ RADIANT_API float PhysicsMaterial_GetDensity(PhysicsMaterial *material);
 RADIANT_API float PhysicsMaterial_GetRestitution(PhysicsMaterial *material);
 RADIANT_API void PhysicsMaterial_SetDensity(PhysicsMaterial *material, float density);
 RADIANT_API void PhysicsMaterial_SetRestitution(PhysicsMaterial *material, float restitution);
+
+/* 2D Collision shape functions */
+RADIANT_API CollisionShape2D *CollisionShape2D_CreateRectangular(float *position, float *size);
+RADIANT_API void CollisionShape2D_Destroy(CollisionShapeType2d *shape);
 
 RADIANT_API void Force_setMagnitude(float magnitude);
 RADIANT_API void Force_setDirection(float direction);

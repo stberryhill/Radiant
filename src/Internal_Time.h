@@ -16,6 +16,13 @@ struct Timer {
   bool stopped;
 };
 
+/* Platform-dependent */
+bool Clock_StartClock();
+double System_TimeNanos();
+double System_TimeMillis();
+double System_TimeSeconds();
+
+/* Platform independent */
 void Clock_Start();
 void Clock_Tick();
 double Clock_SecondsSinceLastTick();

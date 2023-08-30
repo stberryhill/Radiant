@@ -12,12 +12,12 @@
 const int FILE_EOF = EOF;
 const static int MAX_STRING_SIZE = 4096;
 
-File *File_Open(const char *fileName, int qf_file_mode) {
+File *File_Open(const char *fileName, FileMode fileMode) {
   File *file = malloc(sizeof *file);
   
   const int MAX_FOPEN_MODE_LENGTH = 3;
   char mode[MAX_FOPEN_MODE_LENGTH + 1]; /* +1 for null terminator */
-  switch (qf_file_mode) {
+  switch (fileMode) {
     case FILE_MODE_READ:
       strcpy(mode, "r");
       break;
