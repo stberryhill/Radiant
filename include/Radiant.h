@@ -162,11 +162,11 @@ RADIANT_API GpuProgram *GpuProgram_Create(const char *vertexShaderSource, const 
 RADIANT_API void GpuProgram_Destroy(GpuProgram *gpuProgram);
 RADIANT_API void GpuProgram_Bind(GpuProgram *gpuProgram);
 RADIANT_API void GpuProgram_BindAttributeArray(GpuProgram *gpuProgram, const uint gpuLocation, const char *nameInShader);
-RADIANT_API void GpuProgram_SetMatrix4f(const uint matrixLocation, float *inputMatrix);
-RADIANT_API void GpuProgram_SetVector2f(const uint vectorLocation, float *inputVector);
-RADIANT_API void GpuProgram_SetVector3f(const uint vectorLocation, float *inputVector);
-RADIANT_API void GpuProgram_SetVector4f(const uint vectorLocation, float *inputVector);
-RADIANT_API void GpuProgram_SetVector2i(const uint intLocation, int *inputVector);
+RADIANT_API void GpuProgram_SetMatrix4f(const uint matrixLocation, const float *inputMatrix);
+RADIANT_API void GpuProgram_SetVector2f(const uint vectorLocation, const float *inputVector);
+RADIANT_API void GpuProgram_SetVector3f(const uint vectorLocation, const float *inputVector);
+RADIANT_API void GpuProgram_SetVector4f(const uint vectorLocation, const float *inputVector);
+RADIANT_API void GpuProgram_SetVector2i(const uint intLocation, const int *inputVector);
 RADIANT_API void GpuProgram_SetInt(const uint intLocation, int inputInt);
 RADIANT_API uint GpuProgram_GetParameterLocation(GpuProgram *program, const char *name);
 

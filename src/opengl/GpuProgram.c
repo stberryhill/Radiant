@@ -112,27 +112,27 @@ void GpuProgram_Bind(GpuProgram *gpuProgram) {
   rBoundGpuProgram = *gpuProgram;
 }
 
-void GpuProgram_SetMatrix4f(const uint matrixLocation, float *inputMatrix) {
+void GpuProgram_SetMatrix4f(const uint matrixLocation, const float *inputMatrix) {
   glUniformMatrix4fv(matrixLocation, 1, GL_TRUE, inputMatrix);
 }
 
-void GpuProgram_SetVector2f(const uint vectorLocation, float *inputVector) {
+void GpuProgram_SetVector2f(const uint vectorLocation, const float *inputVector) {
   glUniform2fv(vectorLocation, 1, inputVector);
 }
 
-void GpuProgram_SetVector3f(const uint vectorLocation, float *inputVector) {
+void GpuProgram_SetVector3f(const uint vectorLocation, const float *inputVector) {
   glUniform3fv(vectorLocation, 1, inputVector);
 }
 
-void GpuProgram_SetVector4f(const uint vectorLocation, float *inputVector) {
+void GpuProgram_SetVector4f(const uint vectorLocation, const float *inputVector) {
   glUniform4fv(vectorLocation, 1, inputVector);
 }
 
-void GpuProgram_SetVector2i(const uint intLocation, int *inputVector) {
+void GpuProgram_SetVector2i(const uint intLocation, const int *inputVector) {
   glUniform2iv(intLocation, 1, inputVector);
 }
 
-void GpuProgram_SetInt(const uint intLocation, int inputInt) {
+void GpuProgram_SetInt(const uint intLocation, const int inputInt) {
   glUniform1i(intLocation, inputInt);
 }
 

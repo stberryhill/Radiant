@@ -4,6 +4,7 @@ project(Radiant VERSION 0.0.1)
 # Set default visibility to hidden (only functions bearing Radiant_API will be exported)
 set(CMAKE_C_VISIBILITY_PRESET hidden)
 set(CMAKE_VISIBILITY_INLINES_HIDDEN YES)
+cmake_policy(SET CMP0063 NEW) # Use new behavior for export/visibility
 
 option(BUILD_SHARED_LIBS "Build shared library" ON)
 include(GenerateExportHeader)
@@ -84,14 +85,13 @@ add_library(${PROJECT_NAME} SHARED
 # Allows to use in a subdirectory (and in examples)
 add_library(Radiant::Radiant ALIAS Radiant)
 
-
 find_package(glfw3 REQUIRED)
 find_package(OpenGL REQUIRED)
 
 target_link_libraries(Radiant
   OpenGL
   glfw
-)
+  )
 
 generate_export_header(Radiant
   EXPORT_MACRO_NAME RADIANT_API
@@ -112,7 +112,7 @@ target_include_directories(Radiant
 set_target_properties(Radiant PROPERTIES
   VERSION ${PROJECT_VERSION}
   SOVERSION ${PROJECT_VERSION_MAJOR}
-)
+  )
 
 configure_package_config_file(
   ${CMAKE_CURRENT_SOURCE_DIR}/RadiantConfig.cmake.in
@@ -120,13 +120,13 @@ configure_package_config_file(
   INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/Radiant
   PATH_VARS
     CMAKE_INSTALL_LIBDIR
-)
+  )
 
 write_basic_package_version_file(
   "${CMAKE_CURRENT_BINARY_DIR}/RadiantConfigVersion.cmake"
   VERSION ${PROJECT_VERSION}
   COMPATIBILITY SameMajorVersion
-)
+  )
 
 install(TARGETS Radiant
   EXPORT RadiantTargets
@@ -138,7 +138,7 @@ install(TARGETS Radiant
   RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
     COMPONENT Radiant_Runtime
   INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
-)
+  )
 
 # install(FILES ${publicHeaders} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
   
@@ -147,12 +147,12 @@ install(EXPORT RadiantTargets
   COMPONENT Radiant_Development
   NAMESPACE Radiant::
   DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/Radiant
-)
+  )
 
 install(FILES
   ${CMAKE_CURRENT_BINARY_DIR}/RadiantConfig.cmake
   ${CMAKE_CURRENT_BINARY_DIR}/RadiantConfigVersion.cmake
   DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/Radiant
-)
+  )
 
 add_subdirectory(examples)

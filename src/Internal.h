@@ -3,8 +3,8 @@
  * Copyright (c) Sean Tyler Berryhill (sean.tyler.berryhill@gmail.com)
  */
 
-#ifndef _INTERACTIVE_INTERNAL_H
-#define _INTERACTIVE_INTERNAL_H
+#ifndef _RADIANT_INTERNAL_H
+#define _RADIANT_INTERNAL_H
 
 #include "Radiant.h"
 
@@ -46,7 +46,6 @@ struct Texture {
   uint16_t width;
   uint16_t height;
 };
-
 
 void EventQueue_AddEvent(const RadiantEvent *event);
 void EventQueue_Initialize();
